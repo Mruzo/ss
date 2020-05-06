@@ -1,0 +1,18 @@
+
+<form method="post" action="{% url 'sharespace:create_post' %}" class="js-room-create-form">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h4 class="modal-title">Create New Room</h4>
+
+    </div>
+    <div class="modal-body">
+        {% include 'sharespace/includes/partial_room_form.html' %}
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Create Post</button>
+    </div>
+</form>
+
+
+

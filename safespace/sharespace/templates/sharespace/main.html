@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block main %}
+<table class="table table-striped table-dark table-hover text-center" id="myTable">
+    <thead class=" thead-dark">
+    <th>Room Number</th>
+    <th>Name</th>
+    <th>Number of Beds</th>
+    <th>Type</th>
+    <th>Action</th>
+    </thead>
+    <tbody id="tabl">
+    {% include 'sharespace/includes/partial_room_list.html' %}
+    </tbody>
+</table>
+<div id="roomform">
+    <button id="createRoom"
+            class="btn btn-primary js-create-room"
+            data-url="{% url 'sharespace:create_post'%}">
+        Add Room
+    </button>
+
+</div>
+<br/>
+
+<!--ajax sample example-->
+<form method="POST" id="post-form">
+    {% csrf_token %}
+    <div class="fieldwrapper" id="the_post">
+        {{ form.text }}
+    </div>
+    <br>
+    <input type="submit" value="Post" class="btn btn-primary">
+</form>
+
+<div id="search_results"></div>
+<br>
+<button id="test" class="btn btn-success"> Test Button </button>
+
+<!--modal for room creation form-->
+<div class="modal" id="modal-room">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+    {% include 'sharespace/shareform.html'%}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

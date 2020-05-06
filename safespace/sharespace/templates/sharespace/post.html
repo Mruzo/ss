@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+
+{% block main %}
+    <form method="POST" id="post-form">
+
+        <div class="fieldwrapper" id="the_post">
+            {% csrf_token %}
+            {{ form.text }}
+        </div>
+
+        <input type="submit" value="Post" class="btn btn-primary">
+    </form>
+
+    <div id="search_results"></div>
+
+
+{% endblock %}

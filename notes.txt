@@ -1,0 +1,53 @@
+sharespace
+	individual profiles with private content
+
+viewspace
+	public space with content only shared with the permission of the individual
+
+polls
+	anonymous ratings of viewspace content
+
+spaceblog
+	articles on how to navigate the site, get paid, get subscribers
+
+django-mppt(comment app)
+	user comments on pictures
+django-allauth(social app)
+	social
+django-tellme(feedback app)
+	recieve feedback
+
+
+>>> from projects import Project
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ImportError: cannot import name 'Project' from 'projects' (C:\Users\chris\portfolio\projects\__init__.py)
+>>> from projects import Project
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+ImportError: cannot import name 'Project' from 'projects' (C:\Users\chris\portfolio\projects\__init__.py)
+>>> from projects.models import Project
+>>> ps = Project.objects.all()
+>>> p1 = ps[0]
+>>> p2 = ps[1]
+>>> p1.image = 'projects/img/ankara'
+>>> p1.save()
+>>> p2.image = 'projects/img/bg1.jpg'
+>>> p2.save()
+>>> p1.image = 'projects/img/ankara.png'
+>>> p1.save()
+>>> p = Project(title="third test project", description="just checking to see how this will stack", technology="Django", image="bgm.p
+ng")
+>>> p.save()
+>>> p.image
+'bgm.png'
+>>> p.image=bgm.jpg
+Traceback (most recent call last):
+  File "<console>", line 1, in <module>
+NameError: name 'bgm' is not defined
+>>> p.image
+'bgm.png'
+>>> p3 = ps[2]
+>>> p3.image='projects/img/bgm.jpg'
+>>> p3.save()
+>>>

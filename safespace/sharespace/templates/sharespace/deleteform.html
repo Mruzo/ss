@@ -1,0 +1,14 @@
+<form method="post" action="{% url 'sharespace:room_delete' room.id %}" class="js-room-delete-form">
+    {% csrf_token %}
+    <div class="modal-header">
+        <h4 class="modal-title">Confirm Room delete</h4>
+
+    </div>
+    <div class="modal-body">
+        <p class="lead">Are you sure you want to delete the book <strong>{{ room.title }}</strong>?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success">Delete Post</button>
+    </div>
+</form>

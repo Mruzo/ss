@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center mt-5">
+<div class=" col-8 card">
+    <p class="text-center">Are you sure you want to delete <span class="font-weight-bold">{{ obj.title }}</span></p>
+    <form class="form-group" method="post">
+        {% csrf_token %}
+        <div class="row justify-content-center">
+        <a class="btn btn-sm btn-secondary" href="{% url 'viewspace:book_list' %}">Cancel</a>
+        <button type="submit" class="btn btn-sm neww-danger mx-2">Delete</button>
+        </div>
+    </form>
+</div>
+</div>
+
+{% endblock %}

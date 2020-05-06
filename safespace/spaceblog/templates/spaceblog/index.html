@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+    <div class="container">
+        <p id="message"></p>
+        {% for post in posts %}
+        <h3>{{forloop.counter }} {{ post.post_heading }}</h3>
+        <p>{{ post.post_text }}</p>
+        <a class=" btn btn-primary likebutton" id="like{{post.id}}" href="#" data-catid="{{ post.id }}">Like</a>
+        {{post.like}}
+        {% endfor %}
+    </div>
+</body>
+{% endblock %}
