@@ -32,9 +32,12 @@ def save_book_form(request, form, template_name):
         else:
             data['form_is_valid'] = False
     context = {'form': form}
+    for key, value in context.items():
+        print(key, value)
     data['html_form'] = render_to_string(template_name,
-                                         context,
-                                         request=request)
+                                         context)
+    for key, value in data.items():
+        print(key, value)
     return JsonResponse(data)
 
 

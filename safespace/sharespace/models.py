@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
+
 class Room(models.Model):
     ROOM_TYPES = (
         (1, 'Single'),
@@ -38,3 +39,24 @@ class Post(models.Model):
     def __unicode__(self):
         return self.text+' - '+self.author.username
 
+
+class Actor(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ('name',)
+
+
+class Movie(models.Model):
+    title = models.CharField(max_length=200)
+    actors = models.ManyToManyField(Actor)
+    year = models.IntegerField()
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        ordering = ('title',)

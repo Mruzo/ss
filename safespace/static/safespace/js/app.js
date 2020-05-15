@@ -51,7 +51,6 @@ $(function () {
         $.ajax({
             url: btn.attr("data-url"),
             type: 'get',
-            async: true,
             dataType: 'json',
             beforeSend: function () {
                 $("#modal-room").modal("show");

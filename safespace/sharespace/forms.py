@@ -5,7 +5,7 @@ from .models import Room, Post
 class RoomForm(forms.ModelForm):
     class Meta:
         model = Room
-        fields = '__all__'
+        fields = ('name', 'status', 'room_number', 'nobeds', 'room_type', )
 
 
 class PostForm(forms.ModelForm):

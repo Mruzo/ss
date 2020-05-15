@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'q+ood4!$l8bl+r%r-iol)a8y$jmqr@3-(2v+_h8)t2uvcjmr-t'
+SECRET_KEY = 'SS_KEY'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'graphene_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,8 +41,13 @@ INSTALLED_APPS = [
     'viewspace',
     'spaceblog',
     'sharespace',
-
+    'users.apps.UsersConfig',
+    'crispy_forms',
 ]
+
+GRAPHENE = {
+    'SCHEMA': 'schema.schema'
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -133,3 +139,9 @@ STATICFILES_DIRS = [
 
 # MEDIA_ROOT = os.path.join(LOCAL_STATIC_CDN_PATH, 'media')
 # MEDIA_URL = '/media/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'sharespace:main_view'
+
+LOGIN_URL = 'login'
