@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<body>
+    <article class="container">
+        <img class="rounded-circle" src="{{ object.author.profile.image.url }}">
+
+        <h3>{{ forloop.counter }} {{ object.post_heading }}</h3>
+        <h5>{{ object.author }}</h5>
+        <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+        <p>{{ object.post_text }}</p>
+        <a class=" btn btn-primary likebutton" id="like{{post.id}}" href="#" data-catid="{{ object.id }}">Like</a>
+        {{object.like}}
+        <div>
+            {% if object.author == user %}
+                <a href="{% url 'post-update' object.id %}" class="btn btn-secondary btn-sm mt-1 mb-1">Update</a>
+                <a href="{% url 'post-delete' object.id %}" class="btn btn-danger btn-sm mt-1 mb-1">Delete</a>
+            {% endif %}
+        </div>
+
+    </article>
+</body>
+{% endblock %}
