@@ -5,6 +5,8 @@
     <div class="container">
         <p id="message"></p>
         {% for post in posts %}
+        <img class="rounded-circle" src="{{ post.author.profile.image.url }}">
+        <h5>{{post.author}}</h5>
         <h3>{{forloop.counter }} {{ post.post_heading }}</h3>
         <p>{{ post.post_text }}</p>
         <a class=" btn btn-primary likebutton" id="like{{post.id}}" href="#" data-catid="{{ post.id }}">Like</a>

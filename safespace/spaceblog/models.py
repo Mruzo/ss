@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.utils import timezone
 
 # Create your models here.
 
@@ -6,6 +8,8 @@ from django.db import models
 class Post(models.Model):
     post_heading = models.CharField(max_length=200)
     post_text = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="author")
 
     def __str__(self):
         return self.post_heading
