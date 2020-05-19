@@ -21,8 +21,20 @@
             <button class="btn btn-outline-info" type="submit">Update</button>
         </div>
     </form>
-    <div>
-
-    </div>
 </div>
+
+<div>
+
+
+    {% for post in posts %}
+    {{ post.post_heading}}<br>
+    {{ post.post_text}}<br>
+    {{ post.date_posted}}<br>
+    <a class="btn btn info" href="{% url 'post-detail' post.id %}">Options</a><br>
+    {% endfor %}
+
+
+
+</div>
+
 {% endblock %}
