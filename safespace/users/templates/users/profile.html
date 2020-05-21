@@ -3,19 +3,26 @@
 {% block content %}
 
 
-<div>
-
-
-    {% for post in posts %}
-    {{ post.post_heading}}<br>
-    {{ post.post_text}}<br>
-    {{ post.date_posted}}<br>
-    <a class="btn btn-sm btn-outline-primary" href="{% url 'post-detail' post.id %}">Options</a><br>
-    {% endfor %}
-
-    <a class="btn btn-sm btn-primary mt-5" href="{% url 'profile_update' %}">Update Profile</a>
-
-
+<div class="row">
+    <div class="col-6">
+        {% for post in posts %}
+        {{ post.post_heading}}<br>
+        {{ post.post_text}}<br>
+        {{ post.date_posted}}<br>
+        <a class="btn btn-sm btn-outline-primary" href="{% url 'post-detail' post.id %}">Options</a><br>
+        {% endfor %}
+        <a class="btn btn-sm btn-primary mt-5" href="{% url 'profile_update' %}">Update Profile</a>
+    </div>
+    <div class="col-6 border-left">
+        <u class="font-weight-bold">People</u>
+        {% for user in users %}
+        <ul class="list-group">
+            <li class="list-group-item border-0 p-0">
+            @{{ user.username}}<br>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
 
 </div>
 

@@ -3,6 +3,8 @@ from django.contrib import messages
 from sharespace import urls
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+from .models import Profile
+from django.contrib.auth.models import User
 
 
 def register(request):
@@ -23,13 +25,15 @@ def profile(request):
 
     if request.user.is_authenticated:
         posts = request.user.author.all
+        users = User.objects.exclude(id=request.user.id)
 
-    # from pprint import pprint
-    # l = type(request.user.author.all)
-    # pprint(l)
+    from pprint import pprint
+    l = users.values()
+    pprint(l)
 
     context = {
-        'posts': posts
+        'posts': posts,
+        'users': users
     }
     return render(request, 'users/profile.html', context)
 
