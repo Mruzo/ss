@@ -110,6 +110,7 @@ celerybeat.pid
 .env
 .venv
 env/
+ssenv/
 venv/
 ENV/
 port/
