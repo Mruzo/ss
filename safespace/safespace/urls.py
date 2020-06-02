@@ -30,6 +30,7 @@ urlpatterns = [
     path('graphql/', GraphQLView.as_view(graphiql=True)),
     path('register/', user_views.register, name='register'),
     path('profile/', user_views.profile, name='profile'),
+    path('connect/<str:operation>/<int:pk>', user_views.change_connect, name='change_connect'),
     path('profile/settings', user_views.profile_update, name='profile_update'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(template_name='users/logout.html'), name='logout'),

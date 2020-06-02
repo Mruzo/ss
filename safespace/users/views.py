@@ -3,7 +3,7 @@ from django.contrib import messages
 from sharespace import urls
 from .forms import UserRegisterForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
-from .models import Profile
+from .models import Profile, Friend
 from django.contrib.auth.models import User
 
 
@@ -26,6 +26,8 @@ def profile(request):
     if request.user.is_authenticated:
         posts = request.user.author.all
         users = User.objects.exclude(id=request.user.id)
+        friend = Friend.objects.get(current_user=request.user)
+        friends = friend.connect.all()
 
     from pprint import pprint
     l = users.values()
@@ -33,7 +35,8 @@ def profile(request):
 
     context = {
         'posts': posts,
-        'users': users
+        'users': users,
+        'friends': friends
     }
     return render(request, 'users/profile.html', context)
 
@@ -59,3 +62,12 @@ def profile_update(request):
     }
 
     return render(request, 'users/profile_settings.html', context)
+
+
+def change_connect(request, operation, pk):
+    new_friend = Use.objects.get(pk=pk)
+    if operation == 'add':
+        Friend.make_friend(request.user, new_friend)
+    elif operation == 'remove':
+        Friend.lose_friend(request.user, new_friend)
+    return redirect('profile')

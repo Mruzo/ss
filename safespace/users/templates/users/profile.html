@@ -21,6 +21,15 @@
             @{{ user.username}}<br>
             </li>
         </ul>
+        {% endfor %}<br>
+
+        <u class="font-weight-bold">Friends</u>
+        {% for friend in friends %}
+        <ul class="list-group">
+            <li class="list-group-item border-0 p-0">
+            @{{ friend.username}}<br>
+            </li>
+        </ul>
         {% endfor %}
     </div>
 

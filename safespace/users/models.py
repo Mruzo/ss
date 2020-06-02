@@ -21,4 +21,21 @@ class Profile(models.Model):
             img.save(self.image.path)
 
 
+class Friend(models.Model):
+    connect = models.ManyToManyField(User)
+    current_user = models.ForeignKey(User, related_name='owner', null=True, on_delete=models.DO_NOTHING)
+
+    @classmethod
+    def make_friend(cls, current_user, new_friend):
+        friend, created = cls.objects.get_or_create(
+            current_user=current_user
+        )
+        friend.connect.add(new_friend)
+
+    @classmethod
+    def lose_friend(cls, current_user, new_friend):
+        friend, created = cls.objects.get_or_create(
+            current_user=current_user
+        )
+        friend.connect.remove(new_friend)
 
