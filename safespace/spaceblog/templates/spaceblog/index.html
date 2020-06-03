@@ -5,13 +5,13 @@
     <div class="container">
         <p id="message"></p>
         {% for post in posts %}
-        <img class="rounded-circle" src="{{ post.author.profile.image.url }}">
+        <img class="rounded-circle" src="{{ post.author.profile.image.url }}" width="20%">
         <h5>{{post.author}}</h5>
         <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
-        <h3><a class="title" href="{% url 'post-detail' post.id %}">{{forloop.counter }} {{ post.post_heading }}</a></h3>
+        <h5><a class="title" href="{% url 'post-detail' post.id %}">{{ post.post_heading }}</a></h5>
         <p>{{ post.post_text }}</p>
-        <a class=" btn btn-primary likebutton" id="like{{post.id}}" href="#" data-catid="{{ post.id }}">Like</a>
-        {{post.like}}
+        <a class=" btn btn-sm btn-primary likebutton" id="like{{post.id}}" href="#" data-catid="{{ post.id }}">Like</a>
+        {{post.like}}<br><hr>
         {% endfor %}
     </div>
 </body>

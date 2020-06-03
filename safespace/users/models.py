@@ -25,6 +25,9 @@ class Friend(models.Model):
     connect = models.ManyToManyField(User)
     current_user = models.ForeignKey(User, related_name='owner', null=True, on_delete=models.DO_NOTHING)
 
+    def __str__(self):
+        return f'{self.current_user} connections'
+
     @classmethod
     def make_friend(cls, current_user, new_friend):
         friend, created = cls.objects.get_or_create(

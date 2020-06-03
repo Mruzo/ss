@@ -4,12 +4,12 @@
 
 
 <div class="row">
-    <div class="col-6">
+    <div class="col-md-6">
         {% for post in posts %}
         {{ post.post_heading}}<br>
         {{ post.post_text}}<br>
-        {{ post.date_posted}}<br>
-        <a class="btn btn-sm btn-outline-primary" href="{% url 'post-detail' post.id %}">Options</a><br>
+        <small>{{ post.date_posted}}</small><br>
+        <a class="btn btn-sm btn-outline-primary" href="{% url 'post-detail' post.id %}">Options</a><br><hr>
         {% endfor %}
         <a class="btn btn-sm btn-primary mt-5" href="{% url 'profile_update' %}">Update Profile</a>
     </div>
@@ -17,8 +17,15 @@
         <u class="font-weight-bold">People</u>
         {% for user in users %}
         <ul class="list-group">
-            <li class="list-group-item border-0 p-0">
-            @{{ user.username}}<br>
+            <li class="list-group-item border-0 p-1">
+                {% if not user in friends %}
+                <a>@{{ user.username}}</a>
+                &nbsp;
+                <a href="{% url 'change_connect' operation='add' pk=user.pk %}">
+                <button type="button" class="btn btn-sm btn-success">Add Friend</button>
+                </a>
+                <br>
+                {% endif %}
             </li>
         </ul>
         {% endfor %}<br>
@@ -26,8 +33,11 @@
         <u class="font-weight-bold">Friends</u>
         {% for friend in friends %}
         <ul class="list-group">
-            <li class="list-group-item border-0 p-0">
-            @{{ friend.username}}<br>
+            <li class="list-group-item border-0 p-1">
+                <a>@{{ friend.username}}</a> &nbsp;
+                <a href="{% url 'change_connect' operation='remove' pk=friend.pk %}">
+                <button type="button" class="btn btn-sm btn-outline-danger">Remove Friend</button>
+                </a><br>
             </li>
         </ul>
         {% endfor %}

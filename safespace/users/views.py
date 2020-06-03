@@ -23,15 +23,15 @@ def register(request):
 @login_required
 def profile(request):
 
-    if request.user.is_authenticated:
-        posts = request.user.author.all
-        users = User.objects.exclude(id=request.user.id)
-        friend = Friend.objects.get(current_user=request.user)
-        friends = friend.connect.all()
+    # if request.user.is_authenticated:
+    posts = request.user.author.all
+    users = User.objects.exclude(id=request.user.id)
+    friend = Friend.objects.get(current_user=request.user)
+    friends = friend.connect.all()
 
-    from pprint import pprint
-    l = users.values()
-    pprint(l)
+    # from pprint import pprint
+    # l = users.values()
+    # pprint(l)
 
     context = {
         'posts': posts,
@@ -65,7 +65,7 @@ def profile_update(request):
 
 
 def change_connect(request, operation, pk):
-    new_friend = Use.objects.get(pk=pk)
+    new_friend = User.objects.get(pk=pk)
     if operation == 'add':
         Friend.make_friend(request.user, new_friend)
     elif operation == 'remove':
